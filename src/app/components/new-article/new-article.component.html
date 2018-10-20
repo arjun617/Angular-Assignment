@@ -1,0 +1,36 @@
+<div class="editor-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-xs-12">
+                <form>
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" name="title"  [(ngModel)]="article.title" type="text" placeholder="Article Title" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control" name="description" [(ngModel)]="article.description" type="text" placeholder="What's this article about?" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea class="form-control" [(ngModel)]="article.body" name="body" rows="8" placeholder="Write your article (in markdown)">
+                        </textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control" type="text" [(ngModel)]="tag" placeholder="Enter tags" name="tagField" (keyup.enter)="addTag();tag=''" />
+
+                            <div class="tag-list">
+                                <span *ngFor="let tag of article.tagList" class="tag">
+                  
+                  {{ tag }} <i class="delete" (click)="removeTag(tag)">x</i>
+                </span>
+                            </div>
+                        </fieldset>
+                        <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
+              Publish Article
+            </button>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="article-page">
+
+    <div class="banner">
+        <div class="container">
+            <h1>{{ currentArticle.title }}</h1>
+            <span>{{currentArticle.author.username}}</span>
+            <span [hidden]="!canModify"><a class="btn btn-sm btn-outline-secondary" [routerLink]="['/newArticle']" [queryParams]="{slug: currentArticle.slug}" >
+                 Edit Article
+            </a>
+            <button class="btn btn-sm btn-outline-danger"  (click)="deleteArticle()">
+                <i class="ion-trash-a"></i> Delete Article
+            </button>
+        </span>
+            <span [hidden]="canModify">
+            <button class="btn btn-sm" (click)="favouriteArticle()" [ngClass]="{
+            'btn-outline-primary': !currentArticle.favorited,
+            'btn-primary': currentArticle.favorited }">
+                {{currentArticle.favorited?'Unfavourite':'Favourite'}} Article
+            </button>
+            
+        </span>
+
+        </div>
+    </div>
+    <div class="container page">
+
+        <div class="row article-content">
+            <div class="col-md-12">
+                <div [innerHTML]="currentArticle.body"></div>
+                <ul class="tag-list">
+                    <li *ngFor="let tag of currentArticle.tagList" class="tag-default tag-pill tag-outline">
+                        {{ tag }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr />
+        <div class="article-actions">
+            <span [hidden]="!canModify">
+                <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/newArticle']" [queryParams]="{slug: currentArticle.slug}">
+                    Edit Article
+                </a>
+                <button class="btn btn-sm btn-outline-danger" (click)="deleteArticle()">
+                    Delete Article
+                </button>
+            </span>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-8 offset-md-2">
+                <div *ngIf="auth">
+                    <form class="card comment-form" (ngSubmit)="addComment(comment.value);comment.value=''">
+                        <fieldset>
+                            <div class="card-block">
+                                <textarea class="form-control" placeholder="Write a comment..." #comment rows="3" name="commentControl"></textarea>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-sm btn-primary" type="submit">
+                                    Post Comment
+                                </button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div *ngIf="!auth">
+                    <a [routerLink]="['/signin']">Sign in</a> or <a [routerLink]="['/signup']">sign up</a> to add comments on this article.
+                </div>
+                <app-comments (commentDelete)='deleteComment($event)' *ngFor="let comment of comments" [comment]="comment"></app-comments>
+
+            </div>
+
+        </div>
+    </div>
+</div>

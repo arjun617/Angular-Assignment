@@ -1,0 +1,21 @@
+<div class="article-page">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <div class="banner" *ngFor="let article of articles |  paginate: { itemsPerPage: 10, currentPage: p }">
+        <div class="container">
+
+            author:
+            <p>{{ article.author.username}}
+            </p>
+            <a [routerLink]="['/articleDetails']" (click)="setCurrentArticle(article)">
+            title
+            <p>{{article.title}}</p>
+            body:
+            <p>{{article.body}}</p>
+            </a> tags:
+            <span *ngFor="let tag of article.tagList ">
+              {{tag}}
+            </span>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

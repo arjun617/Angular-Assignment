@@ -1,0 +1,31 @@
+<div class="profile-page">
+
+    <div class="user-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 offset-md-1">
+                    <h4>{{ currentUser.username }}</h4>
+                    <p>{{ currentUser.bio }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="articles-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active">
+                        My Posts
+                      </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <app-article [articles]="articles"></app-article>
+            </div>
+        </div>
+    </div>
+</div>

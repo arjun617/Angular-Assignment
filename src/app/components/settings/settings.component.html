@@ -1,0 +1,36 @@
+<div class="settings-page">
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xs-12">
+
+                <h1 class="text-xs-center">Your Settings</h1>
+                <form>
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control" type="text" placeholder="URL of profile picture" [value]="currentUser.image" name="image" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" type="text" [value]="currentUser.username" placeholder="Username" name="username" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea class="form-control form-control-lg" rows="8" [value]="currentUser.bio" placeholder="Bio" name="bio">
+                                      </textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input class="form-control form-control-lg" [value]="currentUser.email" type="email" placeholder="Email" name="email" />
+                        </fieldset>
+
+
+
+
+                    </fieldset>
+                </form>
+                <hr />
+
+                <button class="btn btn-outline-danger" (click)="logout()">
+                   Click here to logout.
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="home-page">
+    <div class="banner" *ngIf="!auth">
+        <div class=" container">
+            <h1 class="logo-font">Arjun Dhall</h1>
+            <p>Angular Assignment</p>
+        </div>
+    </div>
+    <div class="container page">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="feed-toggle">
+                    <ul class="nav nav-pills outline-active">
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="auth">Your Feed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="getAllArticles()"> Global Feed </a>
+                        </li>
+                        <li class="nav-item" *ngIf="tagName">
+                            <a class="nav-link" (click)="displaytagName(tagName)"> #{{tagName}} </a>
+                        </li>
+                    </ul>
+                </div>
+                <app-article [articles]="articles"></app-article>
+            </div>
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <p>Popular Tags</p>
+                    <div class="tag-list">
+                        <a *ngFor="let tag of tags[0]" class="tag-default tag-pill" (click)="displaytagName(tag)">
+                        {{ tag }}
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
